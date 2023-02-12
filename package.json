@@ -1,0 +1,23 @@
+{
+  "name": "lenslight_nodejs_mvc",
+  "version": "1.0.0",
+  "description": "lenslight project",
+  "main": "app.js",
+  "type":"module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/selcuk-yilmaz/lenslight_nodejs_mvc.git"
+  },
+  "author": "selcuk yilmaz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/selcuk-yilmaz/lenslight_nodejs_mvc/issues"
+  },
+  "homepage": "https://github.com/selcuk-yilmaz/lenslight_nodejs_mvc#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
