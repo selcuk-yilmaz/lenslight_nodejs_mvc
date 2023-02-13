@@ -15,6 +15,8 @@ app.set("view engine","ejs")
 
 //static files middleware
 app.use(express.static("public"))
+//!gelen req.body deki json formatını okuyabilmek için
+app.use(express.json())
 //-------------------------------------
 //!below is routes process
 app.use("/",pageRoute)

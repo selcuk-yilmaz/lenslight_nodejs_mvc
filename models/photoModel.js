@@ -15,10 +15,10 @@ const photoSchema = new Schema({
     trim: true,
   },
   uploadedAt: {
-    type: String,
-    required: true,
+    type: Date,
+    default: Date.now,
   },
 });
-const Photo = mongoose.model("photo",photoSchema)
+const Photo = mongoose.model("Photo",photoSchema)
 
 export default Photo
