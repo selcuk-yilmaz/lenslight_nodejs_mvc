@@ -3,6 +3,7 @@ import dotenv from "dotenv"
 import conn from "./db.js"
 import pageRoute from "./routes/pageRoute.js"
 import photoRoute from "./routes/photoRoute.js"
+import userRoute from "./routes/userRoute.js"
 
 dotenv.config()
 //connection db
@@ -17,10 +18,13 @@ app.set("view engine","ejs")
 app.use(express.static("public"))
 //!gelen req.body deki json formatını okuyabilmek için
 app.use(express.json())
+//! form body nin içindeki verilei parse edebilmesi için
+app.use(express.urlencoded({extended:true}))
 //-------------------------------------
 //!below is routes process
 app.use("/",pageRoute)
 app.use("/photos", photoRoute);
+app.use("/users", userRoute);
 // app.get("/",(req,res)=>{
 //     res.render("index")
 // })
