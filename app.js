@@ -1,10 +1,10 @@
 import express from "express"
 import dotenv from "dotenv"
 import conn from "./db.js"
+import cookieParser from 'cookie-parser'
 import pageRoute from "./routes/pageRoute.js"
 import photoRoute from "./routes/photoRoute.js"
 import userRoute from "./routes/userRoute.js"
-
 dotenv.config()
 //connection db
 conn()
@@ -14,12 +14,14 @@ const port = process.env.PORT
 app.set("view engine","ejs")
 
 
-//static files middleware
+//!static files middleware
 app.use(express.static("public"))
 //!gelen req.body deki json formatını okuyabilmek için
 app.use(express.json())
 //! form body nin içindeki verilei parse edebilmesi için
 app.use(express.urlencoded({extended:true}))
+//!tokenı cookie ye kaydetmek için
+app.use(cookieParser());
 //-------------------------------------
 //!below is routes process
 app.use("/",pageRoute)
