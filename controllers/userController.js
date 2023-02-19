@@ -33,17 +33,18 @@ const loginUser = async (req,res)=>{
             })
         }
         if (same) {
-            const token = createToken(user._id);
-            res.cookie("jsonwebtoken",token,{
-                httpOnly:true,
-                maxAge:1000*60*60*24,
-            });
-          res.status(200)
-          .json({
-            user,
-            // token: createToken(user._id)
+          const token = createToken(user._id);
+          res.cookie("jwt", token, {
+            httpOnly: true,
+            maxAge: 1000 * 60 * 60 * 24,
           });
-        //   .send("You are logged in")
+          res.redirect("/users/dashboard");
+          //   res.status(200) 2.yoruma alma
+          //   .json({ 2. yoruma alma
+          // user,   2. yoruma alma
+          // token: createToken(user._id)
+          //   }); 2. yoruma alma
+          //   .send("You are logged in")
         } else {
           res.status(401).json({
             succeded: false,
@@ -62,4 +63,10 @@ const createToken = (userId) =>{
         expiresIn:'1d',
     });
 };
-export { createUser, loginUser };
+
+const getDashboardPage = (req, res) => {
+  res.render("dashboard", {
+    link: "dashboard",
+  });
+};
+export { createUser, loginUser, getDashboardPage };
