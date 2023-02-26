@@ -14,7 +14,6 @@ const port = process.env.PORT
 // ejs template engine
 app.set("view engine","ejs")
 
-
 //!static files middleware
 app.use(express.static("public"))
 //!gelen req.body deki json formatını okuyabilmek için
@@ -26,7 +25,7 @@ app.use(cookieParser());
 //-------------------------------------
 //!below is routes process
 //! tüm get isteklerinde checkuser u kontrol et
-app.get('*',checkUser)
+app.use('*',checkUser)
 app.use("/",pageRoute)
 app.use("/photos", photoRoute);
 app.use("/users", userRoute);
