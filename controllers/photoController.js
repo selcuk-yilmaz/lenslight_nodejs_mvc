@@ -1,7 +1,16 @@
 import Photo from "../models/photoModel.js";
+import { v2 as cloudinary } from "cloudinary";
 
 const createPhoto = async (req, res) => {
-  console.log("REQ BODY", req.body);
+  const result = await cloudinary.uploader.upload(
+    req.files.image.tempFilePath,
+    {
+      use_filename:true,
+      folder:"lenslight_tr",
+    }
+  );
+console.log("result", result);
+  // console.log("REQ BODY", req.body);
   await Photo.create({
     name: req.body.name,
     description: req.body.description,
@@ -9,6 +18,8 @@ const createPhoto = async (req, res) => {
   });
   res.status(201).redirect("/users/dashboard");
 };
+
+
 const getAllPhotos = async (req, res) => {
   try {
     const photos = await Photo.find({});
