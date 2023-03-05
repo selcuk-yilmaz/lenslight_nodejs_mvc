@@ -105,7 +105,7 @@ const getAllUsers = async (req, res) => {
 };
 const follow = async (req, res) => {
   try {
-let user = await User.finddByIdAndUpdate({_id: req.params.id},
+let user = await User.findByIdAndUpdate({_id: req.params.id},
   {
     $push: {followers: res.locals.user._id}
   },
@@ -118,10 +118,11 @@ let user = await User.finddByIdAndUpdate({_id: req.params.id},
     },
     {new: true}
   );
-  res.status(200).json({
-    succeded:true,
-    user
-  });
+  res.status(200).redirect(`/users/${req.params.id}`);
+  // res.status(200).json({
+  //   succeded:true,
+  //   user
+  // });
   } catch (error) {
     res.status(500).json({
       succeded: true,
@@ -131,7 +132,7 @@ let user = await User.finddByIdAndUpdate({_id: req.params.id},
 };
 const unfollow = async (req, res) => {
   try {
-let user = await User.finddByIdAndUpdate({_id: req.params.id},
+let user = await User.findByIdAndUpdate({_id: req.params.id},
   {
     $pull: {followers: res.locals.user._id}
   },
@@ -140,14 +141,15 @@ let user = await User.finddByIdAndUpdate({_id: req.params.id},
   user = await User.findByIdAndUpdate(
     {_id: res.locals.user._id},
     {
-      $pull:{ following: req.params.id},
+      $pull:{ followings: req.params.id},
     },
     {new: true}
   );
-  res.status(200).json({
-    succeded:true,
-    user
-  });
+   res.status(200).redirect(`/users/${req.params.id}`);
+  // res.status(200).json({
+  //   succeded:true,
+  //   user
+  // });
   } catch (error) {
     res.status(500).json({
       succeded: true,
@@ -158,11 +160,17 @@ let user = await User.finddByIdAndUpdate({_id: req.params.id},
 const getAUser = async (req, res) => {
   try {
     const user = await User.findById({ _id: req.params.id });
+
+const inFollowers = user.followers.some((follower)=>{
+  return follower.equals(res.locals.user._id)
+});
+
     const photos = await Photo.find({ user: user._id });
     res.status(200).render("user", {
       user,
       photos,
       link: "users",
+      inFollowers,
     });
   } catch (error) {
     res.status(500).json({

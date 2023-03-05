@@ -8,7 +8,7 @@ import userRoute from "./routes/userRoute.js"
 import {checkUser} from "./middlewares/authMiddleware.js"
 import fileUpload from "express-fileupload"
 import {v2 as cloudinary} from "cloudinary"
-
+import methodOverride from "method-override";
 
 
 dotenv.config()
@@ -34,6 +34,8 @@ app.use(express.urlencoded({extended:true}))
 app.use(cookieParser());
 //!cloudinary e yüklediğimiz görselller için geçici temp folder oluşcak onun için
 app.use(fileUpload({useTempFiles:true}))
+//!
+app.use(methodOverride("_method",{methods:['POST','GET']}))
 //-------------------------------------
 //!below is routes process
 //! tüm get isteklerinde checkuser u kontrol et
