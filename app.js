@@ -34,7 +34,7 @@ app.use(express.urlencoded({extended:true}))
 app.use(cookieParser());
 //!cloudinary e yüklediğimiz görselller için geçici temp folder oluşcak onun için
 app.use(fileUpload({useTempFiles:true}))
-//!
+//!link e tıklayarak put işlemşini yapabilmek için
 app.use(methodOverride("_method",{methods:['POST','GET']}))
 //-------------------------------------
 //!below is routes process

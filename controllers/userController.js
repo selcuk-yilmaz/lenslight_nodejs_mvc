@@ -115,7 +115,7 @@ let user = await User.findByIdAndUpdate({_id: req.params.id},
   user = await User.findByIdAndUpdate(
     {_id: res.locals.user._id},
     {
-      $push:{ following: req.params.id},
+      $push:{ followings: req.params.id},
     },
     {new: true}
   );
