@@ -83,6 +83,7 @@ const user = await User.findById({_id : res.locals.user._id}).populate(["followi
   res.render("dashboard", {
     link: "dashboard",
     photos,
+    user,
   });
 };
 const getAllUsers = async (req, res) => {
