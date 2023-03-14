@@ -25,5 +25,16 @@ const getLogout = (req, res) => {
   });
   res.redirect("/");
 };
-
-export { getIndexPage, getAboutPage, getRegisterPage, getLoginPage, getLogout };
+const getContactPage = (req, res) => {
+  res.render("contact", {
+    link: "contact",
+  });
+};
+export {
+  getIndexPage,
+  getAboutPage,
+  getRegisterPage,
+  getLoginPage,
+  getLogout,
+  getContactPage,
+};
