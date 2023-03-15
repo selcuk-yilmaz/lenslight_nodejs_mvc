@@ -21,12 +21,11 @@
             <a class="read_more" href="/users/<%= photo.user._id %>"
               >Photographer:<%= photo.user.username %></a
             >
+            <% if (isOwner) { %>
             <div style="margin-top: 30px">
               <ul style="display: flex; justify-content: space-between">
                 <li>
                   <button style="min-width: 266px" class="read_more" 
-
-
                   data-toggle="modal" data-target="#updateModal"
                     >Update</button
                   >
@@ -39,6 +38,7 @@
                 </li>
               </ul>
             </div>
+            <% }%>
           </div>
         </div>
         <div class="col-md-6">
