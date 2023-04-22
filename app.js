@@ -2,14 +2,14 @@ import express from "express"
 import dotenv from "dotenv"
 import conn from "./db.js"
 import cookieParser from 'cookie-parser'
-import pageRoute from "./routes/pageRoute.js"
-import photoRoute from "./routes/photoRoute.js"
-import userRoute from "./routes/userRoute.js"
 import {checkUser} from "./middlewares/authMiddleware.js"
 import fileUpload from "express-fileupload"
 import {v2 as cloudinary} from "cloudinary"
 import methodOverride from "method-override";
 
+import pageRoute from "./routes/pageRoute.js"
+import photoRoute from "./routes/photoRoute.js"
+import userRoute from "./routes/userRoute.js"
 
 dotenv.config()
 cloudinary.config({
@@ -52,4 +52,4 @@ app.use("/users", userRoute);
 //-----------------------------------------
 app.listen(port,()=>{
     console.log(`Aplication running on port:${port}`)
-})
+});
