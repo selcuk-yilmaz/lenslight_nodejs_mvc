@@ -1,7 +1,15 @@
 import Photo from "../models/photoModel.js";
 import { v2 as cloudinary } from "cloudinary";
 import fs from "fs";
-
+//! ------------yapımız mvc olMAsaydı böyle mi olacaktı???---------
+// const createPhoto =(req,res)=>{
+//   const photo = Photo.create(req.body);
+//   res.status(201).json({
+//     succeded:true,
+//     photo,
+//   })
+// }
+//!----------------------------------------------
 const createPhoto = async (req, res) => {
   const result = await cloudinary.uploader.upload(
     req.files.image.tempFilePath,
