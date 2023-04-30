@@ -1,7 +1,7 @@
 import Photo from "../models/photoModel.js";
 import { v2 as cloudinary } from "cloudinary";
 import fs from "fs";
-//! ------------yapımız mvc olMAsaydı böyle mi olacaktı???---------
+//!yapımız mc olsaydı aşağıdaki gibi olacaktı---
 // const createPhoto =(req,res)=>{
 //   const photo = Photo.create(req.body);
 //   res.status(201).json({
@@ -42,7 +42,8 @@ const getAllPhotos = async (req, res) => {
       photos,
       link: "photos",
     });
-    // .json({
+    //!yapımız mvc değilde mc olsaydı aşağısını yazacaktık.
+    // res.status(200).json({
     //   succeded: true,
     //   photos,
     // });
